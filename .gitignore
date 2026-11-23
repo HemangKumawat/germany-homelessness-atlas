@@ -1,0 +1,25 @@
+# runtime database, snapshots and lock (rebuilt by the ingest runs; never committed)
+data/atlas.db
+data/atlas.db-*
+data/atlas.lock
+data/backups/
+data/*.db
+# archived source documents (large, re-fetchable; sha256 recorded in the source table)
+data/raw/*
+!data/raw/.gitkeep
+data/geo/*.geojson
+data/baseline-counts.json
+# generated
+site/
+site.staging/
+site.prev/
+logs/
+ledger.jsonl.lock
+__pycache__/
+*.pyc
+.venv/
+STOP
+# secrets live outside the repo (~/.config/germany-atlas/env); never commit env files
+.env*
+!.env.example
+data/raw_sandbox_*/

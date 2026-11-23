@@ -1,0 +1,11 @@
+[Unit]
+Description=Germany Atlas: snapshot the database every 15 minutes
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+AccuracySec=30s
+Unit=germany-atlas-backup.service
+
+[Install]
+WantedBy=timers.target

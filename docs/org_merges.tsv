@@ -1,0 +1,10 @@
+# Lead-reviewed org merges that no shared hard id proves (method 'manual', confidence 0.95).
+# Applied by `python3 -m ingest.run lead_org_resolution`. Each line names both orgs by id AND name_norm; a line
+# whose name_norm does not match the database is skipped. Only add a line after checking the sources; a name match
+# alone is never enough (it stays a flagged link in reports/join_gaps.md).
+alias_id	alias_name_norm	canonical_id	canonical_name_norm	reason
+648	BUNDESARBEITSGEMEINSCHAFT WOHNUNGSLOSENHILFE	19	BUNDESARBEITSGEMEINSCHAFT WOHNUNGSLOSENHILFE	same name and legal form (e.V.); BAG W is one national association seated in Berlin (#19: Berlin Zuwendungsdatenbank + Lobbyregister R001487); #648 is the BAG W membership page with Land 'DE' and no seat
+226	JONAS BETTER PLACE	128	JONAS BETTER PLACE	same name and legal form (GmbH), same seat München in both TED notices; #128 holds USt-IdNr DE285972251, #226's notice printed no Land
+227	PULSM	122	PULSM	same name and legal form (GmbH), same seat München in both TED notices; #122 holds USt-IdNr DE275992867, #227's notice printed no Land
+120	LIVING QUARTER	126	LIVING QUARTER	same name and legal form (GmbH); #126 (USt-IdNr DE302502970) and #189 give seat Berlin, #120 no seat; the differing Land (BE/BB/NI) is TED's place-of-performance NUTS, not the seat
+189	LIVING QUARTER	126	LIVING QUARTER	same name and legal form (GmbH), seat Berlin in both TED notices; Land NI is TED's place-of-performance NUTS, #126 holds USt-IdNr DE302502970

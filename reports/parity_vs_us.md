@@ -1,0 +1,55 @@
+# Parity: Germany Atlas vs. US Homeless Atlas
+
+As of 2026-11-21 (Lead, `lead/core`, after schema 2). US figures come from the headline table and feature list in
+the reference README (`~/projects/_ref/homeless-atlas` @33711f8). German figures are queried from
+`data/atlas.db` (schema 2) and the current `site/` build. No new data was ingested for this report.
+
+## 1. Headline table, side by side
+
+| US row (README) | US | Germany Atlas | closest German equivalent | where the concept differs |
+|---|---:|---:|---|---|
+| organisations | 15,100+ | **675** `org` (16 Länder + Bund), 151 `org_register` IDs (26 Lobbyregister R-numbers) | Träger der Wohnungslosenhilfe from the Berlin Zuwendungsdatenbank, TED award winners, umbrella bodies, Jobcenter | The US builds orgs from USASpending recipients and IRS filers. Germany has no central nonprofit register with financials: Vereinsregister are kept per Amtsgericht, Gemeinnützigkeit is tax-secret, and the Transparenzregister is closed to the public. |
+| named officers / directors | 82,000+ | **462** `org_person` on 32 orgs (119 board / Geschäftsführung / Präsidium, 343 Lobbyregister entrusted persons; 2026-11-21, schema 4 with verbatim quote + Stand) | Lobbyregister (vertretungsberechtigte Personen), Handelsregister register publications (Geschäftsführung of gGmbHs), Vorstand named in annual reports and Impressum | US data is IRS Form 990 Part VII, one filing per org and year, with compensation. Germany has no 990 equivalent. Roles must be assembled from several publications, and pay is almost never published. |
+| federal awards | 41,500+ | **847** `award`, EUR 347.2 M | 632 Berlin Zuwendungen 2021–2025 (EUR 158.3 M, 114 recipients) + 215 TED contract awards 2016–2026 (EUR 188.9 M, 126 recipients) | USASpending covers every federal grant and contract in one place. In Germany, homelessness aid is funded by Länder and Kommunen under SGB XII §§ 67 ff. and the Ordnungsrecht. Only some Länder publish grant databases, and TED covers only procurement above EU thresholds. |
+| CoC point-in-time counts | 7,431 CoC-years, 413 CoCs, 2007–2025 | **2,086** `zaehlung` rows: Bund 5 + Länder 80 + Kreise 2,001 (401 Kreise), Stichtag 31.01., 2022–2026 | Destatis Statistik untergebrachter wohnungsloser Personen (22971, WoBerichtsG) | HUD PIT counts sheltered and unsheltered people on one night per CoC. Destatis counts only people **untergebracht** (in accommodation). People without shelter and hidden homelessness appear only in the biennial Wohnungslosenbericht survey, as national estimates (`is_est=1`). The German series begins in 2022, so the trend is 5 Stichtage long. |
+| (sub-population columns of PIT) | veterans, chronic, SMI, SUD, HIV, DV, youth, families | sex, age bands, nationality, household type, per Kreis (25,612 `metric` rows) | Destatis 22971 breakdowns | No German count of veterans, HIV, SMI or SUD exists. Those US-only columns were dropped in schema 2. |
+| places with population + coordinates | 56,819 | **418** places (DE + 16 Länder + 401 Kreise) with coordinates and geometry; **0** with Einwohner; 0 Gemeinden | BKG VG2500; Destatis 12411 (population) not yet ingested | The US uses Census places. The German equivalents are about 10,800 Gemeinden (AGS) and 401 Kreise. Without population figures there are no per-capita rates yet. |
+| institutions (hospitals, prisons, jails) | 3,432 | **618** `facility` (318 prison, 122 psychiatric, 109 notunterkunft, 24 shelter, 14 beratungsstelle, 14 tagesaufenthalt, 10 kaeltehilfe, 7 other); economics: 107 prison-cost metrics (Tageshaftkosten je Hafttag, 16-Land THKS from MV Drs 8/5062 kept apart from each Land's own series), 43 official shelter-cost metrics (Berlin € je Platz / Tag, München € je Monat, Hamburg örU € je Tag; never one series), 12 Krankenhausplan metrics + 38 Hamburg per-hospital rows (institutions_media run #15) | Wikidata, Justizministerien, city shelter directories (BE, HH, K, M), Destatis 23111-07 beds | The US economics (cost per bed, budgets) come from LAO/TAC. In Germany **0** facilities have economics so far. 23 have closures, and beds are known for 76. Frauenhaus locations are never stored. |
+| law rows | 1,164 | **163** `law`: 132 municipal (80 Satzungen on shelters/fees and Sondernutzung, 52 Polizei-/Ordnungs-/Gefahrenabwehrverordnungen) in 86 Gemeinden, plus 31 Bund/Länder rows incl. 14 action plans and Housing First programmes; 9 court decisions as `doc`; 123 municipal shelter-fee metrics (counts_law run #14, 2026-11-21) | Polizei- und Ordnungsgesetze (general clause, Unterbringungspflicht), SGB XII § 67, WoBerichtsG | US law rows count camping bans and criminalisation ordinances per city. The German counterpart is municipal: Satzungen on Obdachlosenunterkünfte and Gefahrenabwehrverordnungen (begging and camping bans). |
+| videos + images | 1,999 | **127** `media` (125 images, 2 videos) + 21 press investigations in `doc` | Wikimedia Commons; outlet pages linked, not copied | The US scraped videos with yt-dlp. German broadcaster material is linked only, never re-hosted. |
+| audits, court decisions, studies | 375 | **467** `doc`: 416 reports, 21 investigations, 11 studies (incl. BMAS FB 534 with its 2018 range 313,000–337,000 as is_est=1), 10 audits (Rechnungshöfe), 9 court decisions | DIP and Landtag documentation, Rechnungshöfe, court databases | Similar scale. German parliamentary questions (Kleine Anfragen) fill much of the role US audits play. |
+| registered sources | 5,400+ | **2,242** `source` (funding 1,064, funding officers 35, institutions/media 929, counts/law 205, geo 9) | — | Every row cites one, in both atlases. Germany also checks that every stored number is found in the archived source (G5: 56,509 numbers) and spot-checks rows (G9). |
+| other numeric context (not a US headline row) | — | **27,263** `metric` rows, 131 metric types | NRW Wohnungslosenstatistik 2015–2024, BAG W estimates, PKS victims "Obdachlosigkeit", drug deaths, psychiatric beds | National estimates from the Wohnungslosenbericht, BAG W and other series are shown side by side, each with its own label and † badge. They are never merged into one number. |
+| site | 36,691 pages, 58,245 search records, 0 dead links, 0 orphans | **15,536** pages, **15,527** search records, 0 dead internal links, 0 orphan pages (2026-11-21, after institutions_media run #15) | `scripts/build_site.py` | — |
+| completion gate | `verify.py` ALL GATES PASS | `verify.py --spot` **ALL GATES PASS** (G1–G10), selftest rejects every planted bad row | — | The German gates add number-in-source checks (G5), people (G7), shelter protection (G8) and no-republication (G10). |
+
+## 2. Feature list (README intro and "Operational lessons")
+
+| US feature | Germany Atlas | status |
+|---|---|---|
+| every government-funded organisation and contract | Berlin Zuwendungen + TED only | partial |
+| every count and trend | Destatis 22971 Bund/Land/Kreis 2022–2026, NRW 2015–2024, estimates by series | done for the official series; short trend |
+| programs and budgets | 4 rows (Berlin ISP Wohnungslosenhilfe plan, 2015–2018) | gap |
+| closed and open psychiatric hospitals and prisons, with their economics | 318 JVA, 122 psychiatric, 23 closures, Land-level psych beds (23111-07, BT-Drs 21/6258), 107 prison-cost and 12 Krankenhausplan metrics, 43 shelter-cost metrics | facilities yes, economics partial (prison costs all 16 Länder 2022–2023; hospital plans HH and NI only) |
+| the laws | 163 rows (132 municipal in 86 Gemeinden) + 123 fee metrics | partial: kreisfreie-Städte sweep in progress (status table in research/counts_law.md) |
+| measured sub-populations | Destatis sex/age/nationality/household; JVA release homelessness (no data in NRW, shown as "keine Daten") | partial; US categories have no German source |
+| area crime and overdose context | PKS victims of crimes against homeless people (Länder 2022–2024), drug deaths 2022–2025 | started |
+| media | 127 items (unchanged in run #15; the worker's media slice is next) | thin |
+| searchable, map-driven wiki | Leaflet Kreis map, client-side search, pages per place, org, person, facility, law, source | done |
+| long-form briefs (`reports/`, San Francisco first) | this file is the first item in `reports/` | gap |
+| single-writer flock, 15-min `VACUUM INTO` backups, `quick_check`, provenance-plausibility audit | same design, our own implementation | done |
+| atomic publish with shrink guard | `site.staging` → swap, refuses a > 50 % shrink | done |
+| dead-link / orphan check in the build | not in the build yet (measured by hand: 0 dead, 2 orphans) | small gap |
+
+## 3. Biggest gaps, ranked by impact
+
+| # | gap | DE vs US | why it matters | suggested sources (public only) | owner |
+|---|---|---|---|---|---|
+| 1 | named officers (`org_person`) | 462 vs 82,000+ (32 of 675 orgs covered) | No "who runs the money" layer. Person pages and the org ↔ people graph are empty. | Lobbyregister API (vertretungsberechtigte Personen; key in env), Handelsregister register publications (Geschäftsführung of gGmbHs), Vorstand in annual reports and Impressum, Stiftungsverzeichnisse der Länder. G7 already enforces published roles only. | **funding_traeger** |
+| 2 | award coverage | 847 (BE + TED) vs 41,500+ | Money flows are visible for one Land only | Hamburg Transparenzportal (Zuwendungen), Zuwendungsberichte (NRW, BB, SH …), Förderkatalog des Bundes, ESF Plus / EhAP Plus beneficiary lists (EU transparency duty), bundeshaushalt.de titles | **funding_traeger** |
+| 3 | population and Gemeinden | 0 Einwohner, 0 Gemeinden vs 56,819 places | No per-capita rates, no Gemeinde pages, and city-level orgs and facilities cannot be placed | Destatis 12411 / GENESIS 12411-0015 (Kreise, Länder), Gemeindeverzeichnis GV-ISys (Destatis), BKG VG250 Gemeinden | **lead** (geo) |
+| 4 | institution economics and coverage | 618 facilities, 162 cost/plan metrics vs 3,432 with economics | The "closed psych hospital / prison economics" storyline is missing | Haftkosten je Tag and Haftplatz from Landeshaushalte and Landtag answers, Krankenhauspläne der Länder (psych beds per site), Maßregelvollzug reports, further cities' Notunterkunft directories | **institutions_media** |
+| 5 | laws and local rules | 163 vs 1,164 | Criminalisation and duty-to-house rules cannot be compared across places | Municipal Satzungen (Obdachlosenunterkünfte, Benutzungsgebühren), Gefahrenabwehrverordnungen (Lager- und Bettelverbote), Landesaktionspläne, Nationaler Aktionsplan gegen Wohnungslosigkeit (2024), AG SGB XII der Länder | **counts_law** |
+| 6 | budgets and programmes | 4 rows | No spending per Land or Kreis | Landeshaushalte (Kapitel Wohnungslosenhilfe), kommunale Haushaltspläne, Bundesprogramme | funding_traeger |
+| 7 | media volume | 127 vs 1,999 | Less to see on the site | Wikimedia Commons categories, linked public-broadcaster items (metadata only) | institutions_media |
+| 8 | site hygiene and briefs | 2 orphans, no brief | Small | link and orphan check in `build_site`, first city brief (Berlin) | lead |

@@ -1,0 +1,246 @@
+{
+  "drucksachen": [
+    {
+      "id": "900001",
+      "dokumentnummer": "19/100",
+      "drucksachetyp": "Kleine Anfrage",
+      "wahlperiode": 19,
+      "herausgeber": "BT",
+      "titel": "Wohnungslosigkeit in Großstädten",
+      "datum": "2020-01-15",
+      "urheber": [
+        {
+          "titel": "Fraktion der SPD"
+        }
+      ],
+      "fundstelle": {
+        "pdf_url": "https://example.invalid/btd/19/100.pdf"
+      },
+      "pdf_status": "verified_pdf",
+      "catalog_status": 200
+    },
+    {
+      "id": "900002",
+      "dokumentnummer": "20/5",
+      "drucksachetyp": "Antrag",
+      "wahlperiode": 20,
+      "herausgeber": "BR",
+      "titel": "Housing First und Wohnungsnotfälle",
+      "datum": "2021-05-02",
+      "urheber": [
+        {
+          "titel": "Bundesrat"
+        }
+      ],
+      "fundstelle": {
+        "pdf_url": "https://example.invalid/btd/20/5.pdf"
+      },
+      "pdf_status": "unavailable",
+      "catalog_status": 200
+    },
+    {
+      "id": "BE-PARDOK:D-900010",
+      "dokumentnummer": "27042",
+      "drucksachetyp": "Antwort",
+      "wahlperiode": 19,
+      "herausgeber": "BE",
+      "land": "BE",
+      "origin": "landtag_pardok",
+      "parliament": "Abgeordnetenhaus von Berlin",
+      "titel": "Vom Jugendamt in die Wohnungslosigkeit",
+      "datum": "2026-09-08",
+      "urheber": "Senatsverwaltung für Bildung, Jugend und Familie",
+      "pdf_url": "https://example.invalid/be/S19-27042.pdf",
+      "catalog_url": "https://example.invalid/be/S19-27042.pdf",
+      "pdf_status": "verified_pdf",
+      "catalog_status": 200
+    },
+    {
+      "id": "BB-ELVIS:V-382154:0001",
+      "dokumentnummer": "08/2836",
+      "drucksachetyp": "Kleine Anfrage",
+      "wahlperiode": 8,
+      "herausgeber": "BB",
+      "land": "BB",
+      "origin": "landtag_elvis",
+      "parliament": "Landtag Brandenburg",
+      "titel": "Wohnungslosigkeit im Land Brandenburg",
+      "datum": "2026-05-20",
+      "urheber": null,
+      "pdf_url": "https://example.invalid/bb/08-2836.pdf",
+      "catalog_url": "https://example.invalid/bb/08-2836.pdf",
+      "pdf_status": "verified_pdf",
+      "catalog_status": 200
+    },
+    {
+      "id": "BY-RSS:167484",
+      "dokumentnummer": "19/13306",
+      "drucksachetyp": "Initiativdrucksache",
+      "herausgeber": "BY",
+      "land": "BY",
+      "origin": "landtag_rss",
+      "parliament": "Bayerischer Landtag",
+      "titel": "Obdachlosigkeit",
+      "datum": "2026-09-21",
+      "catalog_url": "https://example.invalid/by/gegenstand/167484",
+      "pdf_status": "no_url",
+      "catalog_status": 200
+    }
+  ],
+  "facilities": [
+    {
+      "qid": "Q900001",
+      "name": "Psychiatrische Klinik Beispiel",
+      "kind": "psychiatric",
+      "land": "BE",
+      "city": "Berlin",
+      "status": "unknown",
+      "opened": 1908,
+      "beds": 42,
+      "operator": "Land Berlin",
+      "address": "Beispielweg 1",
+      "lat": 52.5,
+      "lon": 13.4,
+      "website": "https://example.invalid/klinik",
+      "budget": 999999,
+      "annual_cost_per_bed": 12345,
+      "license": "CC0 1.0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "attribution": "Wikidata contributors"
+    },
+    {
+      "qid": "Q900002",
+      "name": "Justizvollzugsanstalt Beispiel",
+      "kind": "prison",
+      "land": "BY",
+      "city": "München",
+      "status": "closed",
+      "opened": 1890,
+      "closed": 2010,
+      "license": "CC0 1.0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "attribution": "Wikidata contributors"
+    },
+    {
+      "qid": "Q900003",
+      "name": "Beispiel Frauenhaus",
+      "kind": "frauenhaus",
+      "land": "HH",
+      "city": "Hamburg",
+      "address": "Geheimgasse 9",
+      "lat": 53.55,
+      "lon": 9.99,
+      "status": "unknown",
+      "license": "CC0 1.0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "attribution": "Wikidata contributors"
+    },
+    {
+      "qid": "Q900004",
+      "name": "Klinik ohne Ort",
+      "kind": "psychiatric",
+      "land": "NI",
+      "city": null,
+      "status": "unknown",
+      "license": "CC0 1.0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "attribution": "Wikidata contributors"
+    },
+    {
+      "qid": "Q900005",
+      "name": "Klinik ohne gültiges Land",
+      "kind": "psychiatric",
+      "land": "ZZ",
+      "city": "Nirgendwo",
+      "status": "unknown",
+      "license": "CC0 1.0",
+      "license_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "attribution": "Wikidata contributors"
+    }
+  ],
+  "media": [
+    {
+      "title": "Obdachlosigkeit in Beispielstadt",
+      "url": "https://commons.wikimedia.org/wiki/File:Beispiel_Obdachlosigkeit.jpg",
+      "kind": "image",
+      "license": "CC BY-SA 4.0",
+      "author": "<a href=\"/wiki/User:Beispiel\">Beispiel</a>",
+      "published": "2020-01-01",
+      "publisher": "Wikimedia Commons",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "attribution": "Beispiel",
+      "credit": "Beispiel"
+    },
+    {
+      "title": "Kältehilfe Erklärung",
+      "url": "https://commons.wikimedia.org/wiki/File:Beispiel_Kaeltehilfe.webm",
+      "kind": "video",
+      "license": "CC0",
+      "author": "Beispiel",
+      "published": "2021-02-02",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "attribution": "Beispiel"
+    },
+    {
+      "title": "Unlicensed scan",
+      "url": "https://commons.wikimedia.org/wiki/File:Beispiel_NoLic.jpg",
+      "kind": "image",
+      "license": null
+    },
+    {
+      "title": "Fair use scan",
+      "url": "https://commons.wikimedia.org/wiki/File:Beispiel_Fair.jpg",
+      "kind": "image",
+      "license": "Non-free / fair use"
+    }
+  ],
+  "audits": [
+    {
+      "report_id": "RH-BE:FIXTURE-2019",
+      "court_id": "RH-BE",
+      "report_kind": "jahresbericht",
+      "title": "Jahresbericht 2019",
+      "chapter": "Unzureichende Zielvorgaben und Steuerung bei der Förderung der Wohnungslosenhilfe im Integrierten Sozialprogramm",
+      "published": "2019-04-02",
+      "catalog_url": "https://example.invalid/rechnungshof/berlin/jahresbericht-2019",
+      "pdf_url": "https://example.invalid/rechnungshof/berlin/jahresbericht-2019.pdf",
+      "pdf_status": "verified_pdf",
+      "locator": "S. 197, Ansicht 59",
+      "attribution": "Rechnungshof von Berlin",
+      "document_text": "15 Unzureichende Zielvorgaben und Steuerung bei der Förderung der Wohnungslosenhilfe im Integrierten Sozialprogramm\nAnsicht 59: Finanzieller Umfang ISP/Wohnungslosenhilfe\nHaushaltsjahr Kapitel Titel ISP (Ansatz) davon Wohnungslosenhilfe (Plan)\n2018                  1150       68406              27.558.000 €                      8.130.474,69 €\n",
+      "metrics": [
+        {
+          "metric": "be_isp_wohnungslosenhilfe_plan_eur",
+          "value": 8130474.69,
+          "unit": "EUR",
+          "year": 2018,
+          "is_rounded": 0,
+          "quote": "2018                  1150       68406              27.558.000 €                      8.130.474,69 €",
+          "locator": "S. 197, Ansicht 59",
+          "note": "Ansicht 59: davon Wohnungslosenhilfe (Plan)."
+        },
+        {
+          "metric": "be_should_not_store_eur",
+          "value": 999999.0,
+          "unit": "EUR",
+          "year": 2018,
+          "quote": "this amount does not appear in the document",
+          "locator": "S. 0"
+        }
+      ]
+    },
+    {
+      "report_id": "BRH:FIXTURE-KDU",
+      "court_id": "BRH",
+      "report_kind": "beratungsbericht",
+      "title": "Gewährung von Leistungen für Unterkunft und Heizung durch die Jobcenter",
+      "published": "2024-09-13",
+      "catalog_url": "https://example.invalid/bundesrechnungshof/kdu-2024",
+      "pdf_url": "https://example.invalid/bundesrechnungshof/kdu-2024.pdf",
+      "pdf_status": "verified_pdf",
+      "attribution": "Bundesrechnungshof",
+      "document_text": "Gewährung von Leistungen für Unterkunft und Heizung durch die Jobcenter. Dieser Bericht des Bundesrechnungshofes ist urheberrechtlich geschützt.",
+      "metrics": []
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+Germany Homelessness Atlas — data and content licence
+
+Copyright (c) 2026 Hemang Kumawat and contributors
+
+The atlas compilation and original content in this repository — the selection and arrangement of the data,
+the database schema design, the source catalog (data/CATALOG.md, data/catalog/), documentation, research notes,
+reports and site text — are licensed under the Creative Commons Attribution 4.0 International licence
+(CC BY 4.0): https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution: "Germany Homelessness Atlas (Wohnungslosigkeit-Atlas), https://github.com/HemangKumawat/germany-homelessness-atlas, CC BY 4.0",
+plus the upstream attribution of every source whose data you reuse.
+
+Upstream data keeps its own licence. Facts and figures taken from public sources remain subject to the terms of
+each source, recorded per source in docs/SOURCES.md and in the `license` / `attribution` columns of
+data/catalog/sources.csv. Examples:
+  - Destatis (GENESIS 22971, 12411, GV-ISys) and BKG VG2500: Datenlizenz Deutschland – Namensnennung 2.0 (dl-de/by-2-0)
+  - Hamburg Transparenzportal (Zuwendungen): CC0 1.0
+  - Bremen Transparenzportal: CC BY 3.0
+  - Rheinland-Pfalz open.rlp.de: dl-de/by-2-0
+  - Berlin Zuwendungsdatenbank (Berlin Open Data): CC BY-SA — data derived from it is shared under CC BY-SA
+  - Wikidata: CC0 1.0; Wikimedia Commons media: the licence of each file (often CC BY-SA)
+  - EU TED procurement notices: © European Union, reuse permitted under the TED legal notice
+  - Mecklenburg-Vorpommern Transparenzdatenbank / LAGuS Zuwendungsverzeichnis: statutory publication, no licence
+    stated; only facts (names, register numbers, amounts) are used
+  - Laws, statutes, Drucksachen and other official works (§ 5 UrhG): public domain
+  - Sources marked "Rechte vorbehalten" / redistribute_fulltext = 0 (press, Impressum pages, some reports):
+    only facts, metadata and short quotations (§ 51 UrhG) are used; their texts are not redistributed.
+
+Where an upstream licence is share-alike or more restrictive, that licence governs the corresponding data,
+and nothing in this file grants rights the upstream source does not.

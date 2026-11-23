@@ -1,0 +1,31 @@
+# Germany Homelessness Atlas (Wohnungslosigkeit-Atlas)
+
+> Public-record atlas of homelessness in Germany: official counts (Destatis 22971, Länder, cities), the Träger and public bodies that are paid to respond, their grants and contracts in EUR, their published officers, law, institutions, audits and media, keyed by Land/Kreis/Gemeinde (AGS). Every number is checked against an archived public document. Python + SQLite, no third-party packages. Code MIT; compilation CC BY 4.0; upstream data under its own licence.
+
+## Start here
+- [AGENTS.md](AGENTS.md): layout, schema, how to add a source, gates, hard rules
+- [README.md](README.md): scope, exclusions, build and verify, licences, current stats
+- [GOALS/GOAL.md](GOALS/GOAL.md): the project contract and scope stops
+- [docs/INGEST_CONTRACT.md](docs/INGEST_CONTRACT.md): interface every domain module implements
+
+## Data
+- [data/CATALOG.md](data/CATALOG.md): rows per table, sources per domain, every publisher with its licence
+- [data/catalog/sources.csv](data/catalog/sources.csv): all registered sources (URL, publisher, licence, retrieval date, sha256)
+- [docs/SOURCES.md](docs/SOURCES.md): human-written source and licence notes (checked by gate G3)
+- [ingest/schema.sql](ingest/schema.sql): database schema
+
+## Code
+- [ingest/run.py](ingest/run.py): single-writer runner
+- [ingest/common.py](ingest/common.py): fetch, archive, extract, upsert helpers
+- [ingest/domains/](ingest/domains/): one module per data domain
+- [scripts/verify.py](scripts/verify.py): verification gates G1–G11
+- [scripts/build_site.py](scripts/build_site.py): static wiki and map generator
+
+## Research notes
+- [research/](research/): per-domain notes on sources, coverage and caveats
+- [LEDGER.md](LEDGER.md): every ingest run with verdict and evidence
+
+## Optional
+- [NOTICE.md](NOTICE.md): attribution, inspiration (0xSero/homeless-atlas), upstream licences
+- [BLOCKERS.md](BLOCKERS.md): open blockers
+- [docs/BOTS.md](docs/BOTS.md): how the AI agent team divided the work

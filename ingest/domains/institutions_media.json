@@ -1,0 +1,6 @@
+{
+ "skip": [
+  "officers"
+ ],
+ "_comment": "Lead 2026-11-23 (06917e2): press accepted (one robots gate in HostGate.fetch for sitemap/search/API/tdmrep/article requests). Officers run only as their own run: python3 -m ingest.run institutions_media --cfg with every other part in skip."
+}

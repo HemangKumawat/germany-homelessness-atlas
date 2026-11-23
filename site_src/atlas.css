@@ -1,0 +1,45 @@
+/* Germany Atlas — terminal-native dark theme (Tokyo Night palette, Omarchy-ish) */
+:root{--bg:#1a1b26;--bg2:#16161e;--bg3:#24283b;--fg:#c0caf5;--dim:#737aa2;--line:#2f334d;
+--acc:#7aa2f7;--grn:#9ece6a;--ylw:#e0af68;--red:#f7768e;--mag:#bb9af7;--cyn:#7dcfff;
+--mono:"JetBrainsMono Nerd Font","JetBrains Mono","CaskaydiaMono Nerd Font",ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.55 var(--mono)}
+a{color:var(--acc);text-decoration:none}a:hover,a:focus{text-decoration:underline;outline:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:1px solid var(--ylw);outline-offset:2px}
+header{display:flex;gap:1.2rem;align-items:center;padding:.5rem 1rem;border-bottom:1px solid var(--line);background:var(--bg2);position:sticky;top:0;z-index:1000}
+header .brand{color:var(--grn);font-weight:700;white-space:nowrap}header .brand small{color:var(--dim);font-weight:400}
+header nav a{margin-right:.9rem;color:var(--fg)}header nav a kbd{color:var(--dim)}
+#q{flex:1;max-width:28rem;background:var(--bg);color:var(--fg);border:1px solid var(--line);padding:.35rem .6rem;font:inherit}
+#q::placeholder{color:var(--dim)}
+#results{position:absolute;top:2.6rem;right:1rem;width:min(36rem,92vw);background:var(--bg2);border:1px solid var(--line);max-height:60vh;overflow:auto;display:none;z-index:1100}
+#results a{display:block;padding:.3rem .7rem;color:var(--fg)}#results a .k{color:var(--mag);display:inline-block;width:5.5em}
+#results a.sel,#results a:hover{background:var(--bg3);text-decoration:none}
+main{max-width:72rem;margin:0 auto;padding:1rem}
+h1{font-size:1.25rem;color:var(--grn);margin:.4rem 0 .2rem}h1::before{content:"# ";color:var(--dim)}
+h2{font-size:1rem;color:var(--acc);margin:1.4rem 0 .4rem}h2::before{content:"## ";color:var(--dim)}
+.sub{color:var(--dim);margin:0 0 1rem}
+table{border-collapse:collapse;width:100%;margin:.4rem 0}th,td{border-bottom:1px solid var(--line);padding:.25rem .5rem;text-align:left;vertical-align:top}
+th{color:var(--dim);font-weight:400}td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ylw);white-space:nowrap}
+.src{color:var(--mag);font-size:.85em}.est{color:var(--red)}.dim{color:var(--dim)}.ok{color:var(--grn)}
+#map{height:62vh;min-height:360px;border:1px solid var(--line);background:var(--bg2)}
+.leaflet-container{background:var(--bg2);font:12px var(--mono)}
+.leaflet-tile-pane{filter:invert(1) hue-rotate(200deg) brightness(.75) contrast(.85) saturate(.4)}
+.leaflet-control-attribution{background:rgba(22,22,30,.85)!important;color:var(--dim)}.leaflet-control-attribution a{color:var(--acc)}
+.leaflet-bar a{background:var(--bg3);color:var(--fg);border-color:var(--line)}
+.ctl{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin:.5rem 0}
+.ctl button,.ctl select{background:var(--bg3);color:var(--fg);border:1px solid var(--line);font:inherit;padding:.2rem .6rem;cursor:pointer}
+.ctl button[aria-pressed=true]{border-color:var(--grn);color:var(--grn)}
+.legend{display:flex;gap:.3rem;align-items:center;font-size:.85em}.legend i{display:inline-block;width:1.4em;height:.8em}
+.tip{background:var(--bg2);color:var(--fg);border:1px solid var(--line);padding:.3rem .5rem}
+.leaflet-tooltip.tip::before{display:none}
+.cols{columns:3 16rem}.cols a{display:block}
+.box{border:1px solid var(--line);padding:.6rem .8rem;background:var(--bg2);margin:.6rem 0}
+.quote{border-left:2px solid var(--mag);padding-left:.6rem;color:var(--fg);font-style:italic}
+footer{border-top:1px solid var(--line);color:var(--dim);padding:1rem;font-size:.85em;max-width:72rem;margin:2rem auto 0}
+#help{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:2000;align-items:center;justify-content:center}
+#help .box{max-width:30rem}#help.on{display:flex}
+kbd{border:1px solid var(--line);padding:0 .3em;font:inherit;color:var(--ylw)}
+.big{font-size:1.7rem;color:var(--ylw)}.crumbs{margin:.2rem 0;font-size:.85em}
+.scroll{overflow-x:auto;max-width:100%}
+@media (max-width:640px){header{flex-wrap:wrap;gap:.5rem}header nav{order:3;width:100%}#q{max-width:none}main{padding:.6rem}#map{height:50vh}td,th{padding:.2rem .3rem}}
+.calc{font-size:.72em;border:1px solid #7aa2f7;border-radius:3px;padding:0 .3em;color:#7aa2f7;white-space:nowrap}

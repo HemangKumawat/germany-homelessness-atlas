@@ -1,0 +1,9 @@
+[Unit]
+Description=Germany Atlas: VACUUM INTO snapshot of data/atlas.db with retention
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/germany-atlas-lead
+ExecStart=%h/projects/germany-atlas-lead/scripts/backup_db.sh
+Nice=10
+IOSchedulingClass=idle
