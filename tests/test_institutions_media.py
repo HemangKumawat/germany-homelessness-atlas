@@ -1817,10 +1817,10 @@ class MoreCityShelterTests(_Offline, unittest.TestCase):
         self.assertIn("frankfurt.de", more.FRANKFURT_URL)
 
         folded = more.fold_page_text(
-            "Die Notschlafstelle Ariadne für Frauen auf der Friedrich-Ebert-Str. 55 "
+            "Die Notschlafstelle Ariadne für Frauen "
             "bietet Platz für 36 Personen."
         )
-        self.assertFalse(more.needles_found(folded, ["Ariadne", "Friedrich-Ebert-Straße 55", "für Frauen"]))
+        self.assertFalse(more.needles_found(folded, ["Ariadne", "für Frauen"]))
         self.assertTrue(more.needles_found(folded, ["Graf-Adolf-Straße 73"]))
 
         restricted = street = 0
@@ -1836,8 +1836,22 @@ class MoreCityShelterTests(_Offline, unittest.TestCase):
             )
             if is_r:
                 restricted += 1
+                self.assertFalse(offer.get("address") or offer.get("plz"), offer["name"])
             else:
                 street += 1
+            # Name or operator can trip the lead-group store rule even when
+            # is_restricted_group_shelter is False (e.g. girls-only offer whose
+            # Träger name contains "Frauen und Männer"). Those must also omit streets.
+            lead = (
+                (not is_r)
+                and (
+                    sh._LEAD_GROUP_RE.search(rec["name"] or "")
+                    or sh._LEAD_GROUP_RE.search(rec.get("operator") or "")
+                )
+                and not sh.MIXED_GROUP_RE.search(rec["name"] or "")
+            )
+            if lead:
+                self.assertFalse(offer.get("address") or offer.get("plz"), offer["name"])
             if "für Frauen" in (rec["name"] + " " + (rec.get("population_note") or "")) and "Männer" not in (rec.get("population_note") or ""):
                 if "Frauen und Männer" not in (rec.get("population_note") or "") and "Männer, Frauen" not in (rec.get("population_note") or ""):
                     self.assertTrue(is_r, rec["name"])
@@ -2884,7 +2898,7 @@ class ManualArchiveTests(unittest.TestCase):
         bremen = self._html(
             "<h1>Notunterbringung nachfragen</h1>"
             "<p>Männer - Notunterkunft für Männer, Rembertiring 49, 28195 Bremen</p>"
-            "<p>Frauen - Notunterkunft für Frauen, Abbentorstr. 5, 28195 Bremen</p>"
+            "<p>Frauen - Notunterkunft für Frauen, Bremen</p>"
             "<p>Sleep Inn, Oberneulander Landstr. 19, 28355 Bremen</p>"
             "<p>La Campagne, Ahlringstr. 2 - 4, 28309 Bremen</p>"
         )
@@ -2895,7 +2909,7 @@ class ManualArchiveTests(unittest.TestCase):
             "<p>Aufnahme- und Übergangsheim Rudolfstraße, Rudolfstr. 18, 60327 Frankfurt am Main</p>"
             "<p>Sozialzentrum am Burghof, Am Burghof 43-45, 60437 Frankfurt am Main</p>"
             "<p>Diakonisches Werk</p>"
-            "<p>Hannah-Wohnen für Frauen, Kurt-Schumacher-Sr. 30-32, 60313 Frankfurt am Main</p>"
+            "<p>Hannah-Wohnen für Frauen, Frankfurt am Main</p>"
             "<p>Weser 5 Diakoniezentrum, Weserstr. 5, 60329 Frankfurt am Main</p>"
             "<p>Integrative Drogenhilfe e. V. (idh)</p>"
             "<p>Eastside, Schielestraße 22-26, 60314 Frankfurt am Main</p>"
@@ -2920,7 +2934,7 @@ class ManualArchiveTests(unittest.TestCase):
         self.assertEqual(len(by_name), 12)
         self.assertEqual(by_name["Notunterkunft für Männer Rembertiring"]["anschrift"], "Rembertiring 49")
         self.assertEqual(by_name["Notunterkunft für Männer Rembertiring"]["kreis_ags"], "04011")
-        women = by_name["Notunterkunft für Frauen Abbentorstraße"]
+        women = by_name["Notunterkunft für Frauen"]
         self.assertIsNone(women["anschrift"])
         self.assertIsNone(women["plz"])
         self.assertIsNone(women["lat"])
@@ -2956,7 +2970,7 @@ class ManualArchiveTests(unittest.TestCase):
         self.assertGreaterEqual(result["metrics"], 10, notes)
         women = conn.execute(
             "SELECT anschrift, plz, lat, lon, zielgruppe FROM facility WHERE name=?",
-            ("Notunterkunft für Frauen Abbentorstraße",),
+            ("Notunterkunft für Frauen",),
         ).fetchone()
         self.assertIsNotNone(women)
         self.assertIsNone(women["anschrift"])
